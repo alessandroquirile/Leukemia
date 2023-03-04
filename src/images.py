@@ -4,7 +4,7 @@ import numpy as np
 
 
 def show_image(df, row):
-    file_name = df["file_name"][row]
+    file_name = df["file"][row]
     image = cv.imread(file_name)
     _show(image, title=file_name)
 
@@ -16,18 +16,18 @@ def _show(image, title=None, cmap=None):
 
 
 def crop_image(df, row):
-    file_name = df["file_name"][row]
+    file_name = df["file"][row]
     image = cv.imread(file_name)
     cropped_image = _crop(image)  # no need to use a mask since the images are already pre-processed
     return cropped_image
 
 
 def _crop(image):
-    max_x, max_y, min_x, min_y = _get_blood_cell_coordinates(image)
+    max_x, max_y, min_x, min_y = _get_cell_coordinates(image)
     return image[min_x:max_x, min_y:max_y, :]
 
 
-def _get_blood_cell_coordinates(image):
+def _get_cell_coordinates(image):
     (x, y, _) = np.where(image != 0)  # relevant image = blood cell and blood cell is not black (0)
     max_x, max_y = np.max((x, y), axis=1)
     min_x, min_y = np.min((x, y), axis=1)

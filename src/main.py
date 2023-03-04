@@ -1,5 +1,5 @@
 from dataframe import create_dataframe
-from images import show_image
+from images import show_image, crop_image
 import os
 
 if __name__ == '__main__':
@@ -10,3 +10,5 @@ if __name__ == '__main__':
     print(df)  # [0;8490] are tumoral cells
 
     show_image(df, 1000)
+
+    crop_image(df, 1000)
