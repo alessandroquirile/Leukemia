@@ -1,4 +1,6 @@
-from utils import create_dataframe, show_image
+from dataframe import create_dataframe
+from images import show_image
+import os
 
 if __name__ == '__main__':
     leukemia_dir = "dataset/leukemia"  # 8491 images
