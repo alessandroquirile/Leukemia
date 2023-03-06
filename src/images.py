@@ -4,7 +4,7 @@ import numpy as np
 
 
 def show_image(df, row):
-    file_name = df["file"][row]
+    file_name = df["file_name"][row]
     image = cv.imread(file_name)
     _show(image, title=file_name)
 
@@ -16,7 +16,7 @@ def _show(image, title=None, cmap=None):
 
 
 def crop_image(df, row):
-    file_name = df["file"][row]
+    file_name = df["file_name"][row]
     image = cv.imread(file_name)
     cropped_image = _crop(image)  # no need to use a mask since the images are already pre-processed
     return cropped_image

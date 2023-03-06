@@ -16,5 +16,5 @@ def _create_dataframe(dir_path):
     file_names = os.listdir(dir_path)
     full_paths = [os.path.join(dir_path, file_name) for file_name in file_names]
     leukemia = 'leukemia' in dir_path
-    dictionary = {'file': full_paths, 'leukemia': leukemia}
+    dictionary = {'file_name': full_paths, 'leukemia': leukemia}
     return pd.DataFrame(dictionary)
