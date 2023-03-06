@@ -17,6 +17,11 @@ if __name__ == '__main__':
 
     file_name = df["file_name"][1000]
     image = cv.imread(file_name)
+    size = (224, 224)
+
+    image = cv.resize(image, size)
     extractor = ResNet50Extractor()
-    extractor.extract(image)
+    features = extractor.extract(image)
+
+    print(features)
     # crop_image(df, 1000)

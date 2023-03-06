@@ -1,7 +1,7 @@
 import numpy as np
 import cv2 as cv
-from tensorflow.keras.applications import ResNet50
-from tensorflow.keras.applications.resnet50 import preprocess_input
+from keras.applications import ResNet50
+from keras.applications.resnet import preprocess_input
 
 from src.FeatureExtraction.IFeatureExtractor import IFeatureExtractor
 
