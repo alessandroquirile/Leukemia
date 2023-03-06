@@ -1,5 +1,7 @@
+from sklearn.preprocessing import MinMaxScaler
 from FeatureExtraction.ResNet50Extractor import ResNet50Extractor
 from dataframe import create_dataframe, create_features_dataframe
+
 
 if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
@@ -15,3 +17,7 @@ if __name__ == '__main__':
 
     print(features_df)
     print(labels)
+
+    features_df = normalize_features(features_df)
+    print(features_df)
+

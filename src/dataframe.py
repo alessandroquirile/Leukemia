@@ -32,3 +32,10 @@ def create_features_dataframe(df, extractor):
         print(f"\rCurrent: {row}", end='')
     features_df = pd.DataFrame(features_list)
     return features_df
+
+
+def normalize_features(features_df):
+    scaler = MinMaxScaler()
+    scaler.fit(features_df)
+    scaled_features = scaler.transform(features_df)
+    return pd.DataFrame(scaled_features)
