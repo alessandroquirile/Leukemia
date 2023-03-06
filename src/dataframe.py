@@ -2,6 +2,8 @@ import os
 
 import pandas as pd
 
+from images import crop_image
+
 
 def create_dataframe(dir1, dir2, shuffle=True):
     df1 = _create_dataframe(dir1)
@@ -18,3 +20,13 @@ def _create_dataframe(dir_path):
     leukemia = 'leukemia' in dir_path
     dictionary = {'file_name': full_paths, 'leukemia': leukemia}
     return pd.DataFrame(dictionary)
+
+
+def create_features_dataframe(df, extractor):
+    features_list = []
+    for row, _ in df.iterrows():
+        cropped_image = crop_image(df, row)
+        features = extractor.extract(cropped_image)
+        features_list.append(features)
+    features_df = pd.DataFrame(features_list)
+    return features_df
