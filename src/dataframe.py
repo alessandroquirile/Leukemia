@@ -3,10 +3,13 @@ import os
 import pandas as pd
 
 
-def create_dataframe(dir1, dir2):
+def create_dataframe(dir1, dir2, shuffle=True):
     df1 = _create_dataframe(dir1)
     df2 = _create_dataframe(dir2)
-    return pd.concat([df1, df2], ignore_index=True)
+    df = pd.concat([df1, df2], ignore_index=True)
+    if shuffle:
+        df = df.sample(frac=1).reset_index(drop=True)
+    return df
 
 
 def _create_dataframe(dir_path):
