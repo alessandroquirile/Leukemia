@@ -25,8 +25,10 @@ def _create_dataframe(dir_path):
 def create_features_dataframe(df, extractor):
     features_list = []
     for row, _ in df.iterrows():
+    #for row in range(10):
         cropped_image = crop_image(df, row)
         features = extractor.extract(cropped_image)
         features_list.append(features)
+        print(f"\rCurrent: {row}", end='')
     features_df = pd.DataFrame(features_list)
     return features_df

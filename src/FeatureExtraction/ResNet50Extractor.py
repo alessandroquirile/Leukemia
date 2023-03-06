@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import tensorflow as tf
 from keras.applications import ResNet50
 from keras.applications.resnet import preprocess_input
 
@@ -16,5 +17,6 @@ class ResNet50Extractor(IFeatureExtractor):
         resized_image = cv.resize(image, size)
         reshaped_image = resized_image.reshape(-1, 224, 224, 3)
         reshaped_image = preprocess_input(reshaped_image)
-        features = self._model.predict(reshaped_image)
-        return features.reshape(2048, )
+        features = self._model(reshaped_image, training=False)
+
+        return features.numpy().reshape(2048, )
