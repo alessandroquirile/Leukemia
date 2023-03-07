@@ -14,8 +14,8 @@ class ResNet50Extractor(IFeatureExtractor):
     def extract(self, image) -> np.array:
         size = (224, 224)
         resized_image = cv.resize(image, size)
-        reshaped_image = resized_image.reshape(-1, 224, 224, 3)
+        reshaped_image = resized_image.reshape(-1, *size, 3)
         reshaped_image = preprocess_input(reshaped_image)
         features = self._model(reshaped_image, training=False)
-
-        return features.numpy().reshape(2048, )
+        features = features.numpy().reshape(2048, )
+        return features
