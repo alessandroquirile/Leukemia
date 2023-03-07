@@ -35,7 +35,11 @@ def create_features_dataframe(df, extractor):
     return features_df
 
 
-def normalize_features(features_df):
+def get_values(df, column):
+    return df[column].to_numpy()
+
+
+def scale(features_df):
     scaler = MinMaxScaler()
     scaler.fit(features_df)
     scaled_features = scaler.transform(features_df)
