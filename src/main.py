@@ -1,25 +1,17 @@
-import pandas
+from keras.applications import ResNet101
 
-from dataframe import create_dataframe, scale, get_values
+from dataframe import create_df, get_values, create_features_df
+from factories.ExtractorFactory import ExtractorFactory
 
 if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
     healthy_dir = "../dataset/healthy"  # 3389 images
 
-    df = create_dataframe(leukemia_dir, healthy_dir, shuffle=False)
+    df = create_df(leukemia_dir, healthy_dir, shuffle=False)
     labels = get_values(df, "leukemia")
 
-    """
-    extractor = SIFT()
-    features_df = create_features_dataframe(df, extractor=extractor)
-    """
-
-    """
-    compression_opts = dict(method='zip', archive_name='ResNet50_unshuffled_features.csv')  
-    features_df.to_csv('ResNet50_unshuffled_features.zip', index=False, compression=compression_opts)  
-    """
-
-    features_df = pandas.read_csv("ResNet50_unshuffled_features.zip")
-
-    features_df = scale(features_df)
+    factory = ExtractorFactory.get_instance()
+    model = ResNet101(weights='imagenet', include_top=False, pooling="avg")  # Choose your model
+    extractor = factory.get_extractor(model)
+    features_df = create_features_df(df, extractor=extractor, do_scale=True)
     print(features_df)

@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from images import crop_image
 
 
-def create_dataframe(dir1, dir2, shuffle=True):
+def create_df(dir1, dir2, shuffle=True):
     df1 = _create_dataframe(dir1)
     df2 = _create_dataframe(dir2)
     df = pd.concat([df1, df2], ignore_index=True)
@@ -23,15 +23,17 @@ def _create_dataframe(dir_path):
     return pd.DataFrame(dictionary)
 
 
-def create_features_dataframe(df, extractor):
+def create_features_df(df, extractor, do_scale):
     features_list = []
-    for row, _ in df.iterrows():
-        # for row in range(10):
+    # for row, _ in df.iterrows():
+    for row in range(10):
         cropped_image = crop_image(df, row)
         features = extractor.extract(cropped_image)
         features_list.append(features)
         print(f"\rCurrent: {row}", end='')
     features_df = pd.DataFrame(features_list)
+    if do_scale:
+        features_df = scale(features_df)
     return features_df
 
 

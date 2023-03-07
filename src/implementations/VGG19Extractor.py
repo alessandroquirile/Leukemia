@@ -1,17 +1,15 @@
 import cv2 as cv
 import numpy as np
-from keras.applications import VGG19
 from keras.applications.resnet import preprocess_input
 
-from src.FeatureExtraction.IFeatureExtractor import IFeatureExtractor
+from interfaces.Extractor import Extractor
 
 
-class VGG19Extractor(IFeatureExtractor):
-    def __init__(self):
-        super().__init__()
-        self._model = VGG19(weights='imagenet', include_top=False, pooling="avg")
+class VGG19Extractor(Extractor):
+    def __init__(self, model):
+        self._model = model
 
-    def extract(self, image) -> np.array:
+    def extract(self, image) -> np.ndarray:
         size = (224, 224)
         resized_image = cv.resize(image, size)
         reshaped_image = resized_image.reshape(-1, *size, 3)

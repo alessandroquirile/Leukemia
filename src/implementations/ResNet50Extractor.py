@@ -1,17 +1,15 @@
 import cv2 as cv
 import numpy as np
-from keras.applications import ResNet101
 from keras.applications.resnet import preprocess_input
 
-from src.FeatureExtraction.IFeatureExtractor import IFeatureExtractor
+from interfaces.Extractor import Extractor
 
 
-class ResNet101Extractor(IFeatureExtractor):
-    def __init__(self):
-        super().__init__()
-        self._model = ResNet101(weights='imagenet', include_top=False, pooling="avg")
+class ResNet50Extractor(Extractor):
+    def __init__(self, model):
+        self._model = model
 
-    def extract(self, image) -> np.array:
+    def extract(self, image) -> np.ndarray:
         size = (224, 224)
         resized_image = cv.resize(image, size)
         reshaped_image = resized_image.reshape(-1, *size, 3)

@@ -1,13 +1,12 @@
 import cv2 as cv
 import numpy as np
 
-from FeatureExtraction.IFeatureExtractor import IFeatureExtractor
+from interfaces.Extractor import Extractor
 
 
-class SIFT(IFeatureExtractor):
-    def __init__(self):
-        super().__init__()
-        self._model = cv.SIFT_create()
+class SIFTExtractor(Extractor):
+    def __init__(self, model):
+        self._model = model
 
     def extract(self, image) -> np.array:
         gray_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
