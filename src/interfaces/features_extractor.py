@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 
-class Extractor:
+class FeaturesExtractor:
 
     @abstractmethod
     def extract(self, image):

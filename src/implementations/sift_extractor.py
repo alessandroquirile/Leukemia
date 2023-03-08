@@ -1,10 +1,10 @@
 import cv2 as cv
 import numpy as np
 
-from interfaces.extractor import Extractor
+from interfaces.features_extractor import FeaturesExtractor
 
 
-class SIFTExtractor(Extractor):
+class SIFTFeaturesExtractor(FeaturesExtractor):
     def __init__(self, model):
         self._model = model
 

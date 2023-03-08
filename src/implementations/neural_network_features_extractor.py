@@ -2,10 +2,10 @@ import cv2 as cv
 import numpy as np
 from keras.applications.resnet import preprocess_input
 
-from interfaces.extractor import Extractor
+from interfaces.features_extractor import FeaturesExtractor
 
 
-class NeuralNetworkFeaturesExtractor(Extractor):
+class NeuralNetworkFeaturesFeaturesExtractor(FeaturesExtractor):
     def __init__(self, model, features):
         self._model = model
         self.features = features
