@@ -1,9 +1,7 @@
 from keras.applications import ResNet101
 
 from dataframe import create_df, get_values, create_features_df
-from factories.ExtractorFactory import ExtractorFactory
-from images import crop_image, _show, _create_mask
-
+from factories.extractor_factory import ExtractorFactory
 
 if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images

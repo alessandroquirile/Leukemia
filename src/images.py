@@ -2,6 +2,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def get_image(df, row):
     file_name = get_file_name(df, row)
     image = cv.imread(file_name)

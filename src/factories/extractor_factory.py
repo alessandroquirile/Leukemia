@@ -1,7 +1,7 @@
-from implementations.ResNet101Extractor import ResNet101Extractor
-from implementations.ResNet50Extractor import ResNet50Extractor
-from implementations.VGG19Extractor import VGG19Extractor
-from interfaces.Extractor import Extractor
+from implementations.resnet101_extractor import ResNet101Extractor
+from implementations.resnet50_extractor import ResNet50Extractor
+from implementations.vgg19_extractor import VGG19Extractor
+from interfaces.extractor import Extractor
 
 
 class ExtractorFactory:

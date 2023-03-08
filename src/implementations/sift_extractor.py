@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-from interfaces.Extractor import Extractor
+from interfaces.extractor import Extractor
 
 
 class SIFTExtractor(Extractor):

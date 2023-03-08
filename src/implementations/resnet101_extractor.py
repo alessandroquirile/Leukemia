@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 from keras.applications.resnet import preprocess_input
 
-from interfaces.Extractor import Extractor
+from interfaces.extractor import Extractor
 
 
 class ResNet101Extractor(Extractor):
