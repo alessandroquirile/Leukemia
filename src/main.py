@@ -48,4 +48,4 @@ if __name__ == '__main__':
     best_model = get_best_knn_classifier(neighborhood_span, x_train, x_test, y_train, y_test, plot=True)
     predictions_test = best_model.predict(x_test)
 
-    show_performance(y_test, predictions_test)
+    show_performance(best_model, y_test, predictions_test)

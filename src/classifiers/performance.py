@@ -4,13 +4,14 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
 
 
-def show_performance(y_test, predictions_test):
+def show_performance(model, y_test, predictions_test):
     accuracy = accuracy_score(y_test, predictions_test)
     precision = precision_score(y_test, predictions_test)
     recall = recall_score(y_test, predictions_test)
     f1 = f1_score(y_test, predictions_test)
     w_f1 = f1_score(y_test, predictions_test, average="weighted")
     print(
+        f"Model: {model}\n"
         f"Accuracy: {accuracy}\n"
         f"Precision: {precision}\n"
         f"Recall: {recall}\n"
