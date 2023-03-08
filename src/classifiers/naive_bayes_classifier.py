@@ -1,8 +1,12 @@
-
-from classifiers.performance import plot_accuracies
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import GaussianNB
 
-def get_nb_classifier(x_train, y_train):
+
+def naive_bayes(x, y):
     model = GaussianNB()
-    model.fit(x_train, y_train)
-    return model
+    scores = cross_validate(
+        model, x, y, cv=5, n_jobs=-1,
+        scoring=("accuracy", "precision", "recall", "f1")
+    )
+    return model, scores

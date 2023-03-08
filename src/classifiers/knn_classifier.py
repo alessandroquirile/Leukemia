@@ -1,9 +1,20 @@
+from sklearn.model_selection import GridSearchCV, cross_validate
 from sklearn.neighbors import KNeighborsClassifier
 
-from classifiers.performance import plot_accuracies
+
+def knn(x, y):
+    param_grid = {"n_neighbors": list(range(5, 30))}
+    grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5, n_jobs=-1)
+    grid.fit(x, y)
+    model = grid.best_estimator_
+    scores = cross_validate(
+        model, x, y, cv=5, n_jobs=-1,
+        scoring=("accuracy", "precision", "recall", "f1")
+    )
+    return model, scores
 
 
-def get_best_knn_classifier(neighborhood_span, x_train, x_test, y_train, y_test, plot=False):
+"""def get_best_knn_classifier(neighborhood_span, x_train, x_test, y_train, y_test, plot=False):
     train_accuracies = []
     test_accuracies = []
     best_acc = 0
@@ -21,4 +32,4 @@ def get_best_knn_classifier(neighborhood_span, x_train, x_test, y_train, y_test,
     if plot:
         plot_accuracies(neighborhood_span, train_accuracies, test_accuracies)
 
-    return best_model
+    return best_model"""

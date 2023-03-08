@@ -2,6 +2,7 @@ import tensorflow as tf
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 
+
 def train_model(x_train, x_test, y_train, y_test, plot=False):
     x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2)
 
