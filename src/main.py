@@ -53,7 +53,7 @@ if __name__ == '__main__':
     # Neural network classification
     x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
     model = train_deep_neural_network(x_train, y_train, plot=True)
-    model.save("../DNN.n5")
+    model.save("../DNN.h5")
 
     # if sensitivity is higher, the classifier will be more likely to give a Leukemia result,
     # this enables the user to tune number of False Negatives in favor of False Positives
