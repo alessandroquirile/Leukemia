@@ -5,16 +5,6 @@ from interfaces.Extractor import Extractor
 
 
 class ExtractorFactory:
-    _instance = None
-
-    def __init__(self):
-        self._instance = None
-
-    @staticmethod
-    def get_instance():
-        if ExtractorFactory._instance is None:
-            ExtractorFactory._instance = ExtractorFactory()
-        return ExtractorFactory._instance
 
     @staticmethod
     def get_extractor(model) -> Extractor:

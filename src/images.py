@@ -2,10 +2,20 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
 
+def get_image(df, row):
+    file_name = get_file_name(df, row)
+    image = cv.imread(file_name)
+    return image
+
+
+def get_file_name(df, row):
+    file_name = df["file_name"][row]
+    return file_name
+
 
 def show_image(df, row):
-    file_name = df["file_name"][row]
-    image = cv.imread(file_name)
+    file_name = get_file_name(df, row)
+    image = get_image(df, row)
     _show(image, title=file_name)
 
 
@@ -16,8 +26,7 @@ def _show(image, title=None, cmap=None):
 
 
 def crop_image(df, row):
-    file_name = df["file_name"][row]
-    image = cv.imread(file_name)
+    image = get_image(df, row)
     cropped_image = _crop(image)  # no need to use a mask since the images are already pre-processed
     return cropped_image
 
@@ -32,6 +41,13 @@ def _get_cell_coordinates(image):
     max_x, max_y = np.max((x, y), axis=1)
     min_x, min_y = np.min((x, y), axis=1)
     return max_x, max_y, min_x, min_y
+
+
+def _create_mask(image):
+    gray_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+    thresh_type = cv.THRESH_BINARY
+    mask = cv.threshold(gray_image, 0, 255, thresh_type)[1]
+    return mask  # show with cmap="gray"
 
 
 """""
