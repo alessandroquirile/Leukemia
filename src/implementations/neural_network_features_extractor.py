@@ -5,9 +5,10 @@ from keras.applications.resnet import preprocess_input
 from interfaces.extractor import Extractor
 
 
-class VGG19Extractor(Extractor):
-    def __init__(self, model):
+class NeuralNetworkFeaturesExtractor(Extractor):
+    def __init__(self, model, features):
         self._model = model
+        self.features = features
 
     def extract(self, image) -> np.ndarray:
         size = (224, 224)
@@ -15,5 +16,5 @@ class VGG19Extractor(Extractor):
         reshaped_image = resized_image.reshape(-1, *size, 3)
         reshaped_image = preprocess_input(reshaped_image)
         features = self._model(reshaped_image, training=False)
-        features = features.numpy().reshape(512, )
+        features = features.numpy().reshape(self.features, )
         return features

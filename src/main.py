@@ -15,3 +15,9 @@ if __name__ == '__main__':
     extractor = factory.get_extractor(model)
     features_df = create_features_df(df, extractor=extractor, do_scale=True)
     print(features_df)
+
+    """features_df = pd.read_csv("ResNet50_unshuffled_features.zip")
+    print(features_df)
+
+    # Feature Selection
+    print(f"Before: {len(features_df.columns)}")"""

@@ -25,8 +25,8 @@ def _create_dataframe(dir_path):
 
 def create_features_df(df, extractor, do_scale):
     features_list = []
-    for row, _ in df.iterrows():
-        # for row in range(10):  # dbg
+    # for row, _ in df.iterrows():
+    for row in range(10):  # dbg
         cropped_image = crop_image(df, row)
         features = extractor.extract(cropped_image)
         features_list.append(features)
