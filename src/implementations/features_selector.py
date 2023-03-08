@@ -1,6 +1,5 @@
 from interfaces.features_selector import FeaturesSelector
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import f_classif
+
 
 class FeaturesSelector(FeaturesSelector):
 
@@ -14,4 +13,3 @@ class FeaturesSelector(FeaturesSelector):
         cols = self._model.get_support(indices=True)
         features = df.iloc[:, cols]
         return features
-

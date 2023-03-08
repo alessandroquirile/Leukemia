@@ -1,8 +1,8 @@
-from interfaces.features_selector import FeaturesSelector
-from sklearn.feature_selection import SelectKBest, SelectFromModel
-from sklearn.feature_selection import f_classif
-from implementations.features_selector import FeaturesSelector
 from sklearn.feature_selection import RFE
+from sklearn.feature_selection import SelectKBest, SelectFromModel
+
+from implementations.features_selector import FeaturesSelector
+
 
 class FeaturesSelectorFactory:
 
