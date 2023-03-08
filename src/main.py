@@ -1,8 +1,10 @@
 import pandas as pd
 from sklearn.feature_selection import SelectKBest
+from sklearn.model_selection import train_test_split
 
 from classifiers.naive_bayes_classifier import naive_bayes
-from classifiers.performance import show_performance_cv
+from classifiers.performance import show_performance_cv, show_performance
+from classifiers.multilayer_perceptron import train_deep_neural_network
 from dataframe import create_df, get_values
 from src.factories.features_selector_factory import FeaturesSelectorFactory
 
@@ -34,12 +36,29 @@ if __name__ == '__main__':
     features_df = pd.read_csv("ResNet50_unshuffled_features.zip")  # todo - da scalare
     # print(features_df)
 
+    """
     # FS
     fs_model = SelectKBest(k=50)
     selector = FeaturesSelectorFactory.get_features_selector(fs_model)
     features_df = selector.select_features(features_df, labels)
     # print(features_df)
+    """
 
-    # Classification
+    """
+    # Naive bayes Classification
     model, scores = naive_bayes(features_df, labels)  # or knn or svc
     show_performance_cv(model, scores)
+    """
+
+    # Neural network classification
+    x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
+    model = train_deep_neural_network(x_train, y_train, plot=True)
+    model.save("../DNN.h5")
+
+    # if sensitivity is higher, the classifier will be more likely to give a Leukemia result,
+    # this enables the user to tune number of False Negatives in favor of False Positives
+    prediction_sensitivity = 1
+
+    predictions_test = model.predict(x_test)
+    predictions_test = [1 if x >= 0.5 / prediction_sensitivity else 0 for x in predictions_test]
+    show_performance(model, y_test, predictions_test)
