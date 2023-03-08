@@ -1,6 +1,7 @@
 import pandas as pd
+from sklearn import svm
 from sklearn.feature_selection import SelectKBest
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.naive_bayes import GaussianNB
 
 from classifiers.knn_classifier import get_best_knn_classifier
@@ -46,6 +47,17 @@ if __name__ == '__main__':
 
     # Classification
     x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
+
+    """
+    # SVC
+    param_grid = {'C': [0.1, 1, 10, 100, 1000],
+                  'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
+                  'kernel': ['rbf', 'poly']}
+    svm_grid = GridSearchCV(svm.SVC(), param_grid, cv=5, n_jobs=-1)
+    svm_grid.fit(x_train, y_train)
+    cls = svm_grid.best_estimator_
+    predictions_test = cls.predict(x_test)
+    show_performance(cls, y_test, predictions_test)"""
 
     """
     # NB Classifier
