@@ -22,7 +22,7 @@ def show_performance_cv(model, scores):
         f"Accuracy: {accuracy_avg} ± {accuracy_std}\n"
         f"Precision: {precision_avg} ± {precision_std}\n"
         f"Recall: {recall_avg} ± {recall_std}\n"
-        f"F1: {f1_avg} ± {f1_std}\n"
+        f"F1: {f1_avg} ± {f1_std}"
     )
 
 
