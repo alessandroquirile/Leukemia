@@ -24,8 +24,8 @@ def show_performance(y_test, predictions_test):
         xticklabels=labels,
         yticklabels=labels
     )
-    plt.xlabel("Ground truth")
-    plt.ylabel("Predicted labels")
+    plt.xlabel("Predicted labels")
+    plt.ylabel("Ground truth")
     plt.show()
 
 
