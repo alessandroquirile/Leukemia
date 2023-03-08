@@ -21,7 +21,7 @@ if __name__ == '__main__':
     features_df = create_features_df(df, extractor=extractor, do_scale=True)
     print(features_df)"""
 
-    # Feature Extraction
+    # Feature Selection
     """fs_model = SelectKBest(k=50)
     # fs_model = RFE(estimator=RandomForestClassifier(n_jobs=-1), n_features_to_select=30)
     #fs_model = SelectFromModel(
@@ -35,3 +35,4 @@ if __name__ == '__main__':
     # Demo
     features_df = pd.read_csv("ResNet50_unshuffled_features.zip")  # todo - da scalare
     print(features_df)
+
