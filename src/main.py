@@ -1,14 +1,10 @@
 import pandas as pd
-from matplotlib import pyplot as plt
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
 
-import src.classifiers.multilayer_perceptron
 from classifiers.knn_classifier import get_best_knn_classifier
 from classifiers.performance import show_performance
 from dataframe import create_df, get_values, scale
-
-import tensorflow as tf
 
 from src.factories.features_selector_factory import FeaturesSelectorFactory
 
@@ -38,27 +34,8 @@ if __name__ == '__main__':
 
     # ----- DEMO -------
     features_df = pd.read_csv("ResNet50_unshuffled_features.zip")  # todo - da scalare
-    features_df = scale(features_df)
-
-    fs_model = SelectKBest(k=500)
-    # fs_model = RFE(estimator=RandomForestClassifier(n_jobs=-1), n_features_to_select=30)
-    # fs_model = SelectFromModel(
-    #    RandomForestClassifier(n_estimators=200, random_state=5, n_jobs=-1),
-    #    threshold="1.25*median",
-    #    max_features=2
-    # )
-    selector = FeaturesSelectorFactory.get_features_selector(fs_model)
-    features_df = selector.select_features(features_df, labels)
-
-
     # print(features_df)
-    x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
 
-
-
-
-
-"""
     # FS
     fs_model = SelectKBest(k=50)
     selector = FeaturesSelectorFactory.get_features_selector(fs_model)
@@ -73,13 +50,3 @@ if __name__ == '__main__':
     predictions_test = best_model.predict(x_test)
 
     show_performance(y_test, predictions_test)
-"""
-
-"""
-# Deep Neural Network
-model = src.classifiers.multilayer_perceptron.train_model(x_train, x_test, y_train, y_test, plot=True)
-model.save("../leukemia_classifier.h5")
-predictions_test = model.predict(x_test)
-predictions_test = [1 if x >= 0.5 else 0 for x in predictions_test]
-show_performance(y_test, predictions_test)
-"""
