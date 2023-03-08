@@ -1,10 +1,12 @@
 import pandas as pd
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
 
 from classifiers.knn_classifier import get_best_knn_classifier
 from classifiers.performance import show_performance
 from dataframe import create_df, get_values, scale
+from classifiers.naive_bayes_classifier import get_nb_classifier
 
 from src.factories.features_selector_factory import FeaturesSelectorFactory
 
@@ -45,8 +47,16 @@ if __name__ == '__main__':
     # Classification
     x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
 
+    """
+    # NB Classifier
+    model = get_nb_classifier(x_train, y_train)
+    predictions_test = model.predict(x_test)
+    show_performance(model, y_test, predictions_test)"""
+
+    """
+    # kNeighbors Classifier
     neighborhood_span = range(5, 25)
     best_model = get_best_knn_classifier(neighborhood_span, x_train, x_test, y_train, y_test, plot=True)
     predictions_test = best_model.predict(x_test)
 
-    show_performance(y_test, predictions_test)
+    show_performance(y_test, predictions_test)"""
