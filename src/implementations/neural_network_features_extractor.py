@@ -5,7 +5,7 @@ from keras.applications.resnet import preprocess_input
 from interfaces.features_extractor import FeaturesExtractor
 
 
-class NeuralNetworkFeaturesFeaturesExtractor(FeaturesExtractor):
+class NeuralNetworkFeaturesExtractor(FeaturesExtractor):
     def __init__(self, model, features):
         self._model = model
         self.features = features

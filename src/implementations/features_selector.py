@@ -1,7 +1,7 @@
 from interfaces.features_selector import FeaturesSelector
 
 
-class FeaturesSelector(FeaturesSelector):
+class Selector(FeaturesSelector):
 
     def __init__(self, model):
         self._model = model
