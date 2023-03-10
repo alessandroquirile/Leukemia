@@ -91,7 +91,7 @@ if __name__ == '__main__':
     predictions_test = [1 if x >= 0.5 / prediction_sensitivity else 0 for x in predictions_test]
     show_performance(model, y_test, predictions_test)"""
 
-    image = get_image(df, 2500)
+    image = get_image(dataset_df, 2500)
     _show(image, title="Original")
 
     noisy_image = add_gaussian_noise(image)
