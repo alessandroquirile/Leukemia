@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+from cv2 import SIFT_create
+from matplotlib import pyplot as plt
+import cv2 as cv
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
@@ -9,6 +12,7 @@ from classifiers.multilayer_perceptron import train_deep_neural_network
 from dataframe import create_df, get_values
 from images import get_image, _show, add_gaussian_noise, crop_image, _crop, _create_mask
 from src.factories.features_selector_factory import FeaturesSelectorFactory
+from implementations.sift_extractor import SIFTFeaturesExtractor
 
 if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
@@ -87,4 +91,3 @@ if __name__ == '__main__':
 
     cropped_image = _crop(noisy_image)
     _show(cropped_image, title="Cropped noisy image")
-
