@@ -18,8 +18,8 @@ if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
     healthy_dir = "../dataset/healthy"  # 3389 images
 
-    df = create_df(leukemia_dir, healthy_dir, shuffle=False)
-    labels = get_values(df, "leukemia")
+    dataset_df = create_df(leukemia_dir, healthy_dir, shuffle=False)
+    labels = get_values(dataset_df, "leukemia")
 
     # Feature Extraction
     """ model = ResNet101(weights='imagenet', include_top=False, pooling="avg")  # Choose your model
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     # ----- DEMO -------
     features_df = pd.read_csv("ResNet50_unshuffled_features.zip")  # todo - da scalare
-    # print(features_df)
+    print(features_df)
 
 
 
@@ -82,12 +82,3 @@ if __name__ == '__main__':
     predictions_test = model.predict(x_test)
     predictions_test = [1 if x >= 0.5 / prediction_sensitivity else 0 for x in predictions_test]
     show_performance(model, y_test, predictions_test)"""
-
-    image = get_image(df, 2500)
-    _show(image, title="Original")
-
-    noisy_image = add_gaussian_noise(image)
-    _show(noisy_image, title="Noisy image")
-
-    cropped_image = _crop(noisy_image)
-    _show(cropped_image, title="Cropped noisy image")
