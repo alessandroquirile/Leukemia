@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+from cv2 import SIFT_create
+from matplotlib import pyplot as plt
+import cv2 as cv
 from keras.applications import VGG19, ResNet50, ResNet101
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
@@ -7,23 +10,24 @@ from sklearn.decomposition import PCA
 from classifiers.naive_bayes_classifier import naive_bayes
 from classifiers.performance import show_performance_cv, show_performance
 from classifiers.multilayer_perceptron import train_deep_neural_network
-from dataframe import create_df, get_values, create_features_df
+from dataframe import create_df, get_values
 from images import get_image, _show, add_gaussian_noise, crop_image, _crop, _create_mask
 from src.factories.features_selector_factory import FeaturesSelectorFactory
 from src.factories.features_extractor_factory import FeaturesExtractorFactory
+from implementations.sift_extractor import SIFTFeaturesExtractor
 
 if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
     healthy_dir = "../dataset/healthy"  # 3389 images
 
-    df = create_df(leukemia_dir, healthy_dir, shuffle=False)
-    labels = get_values(df, "leukemia")
+    dataset_df = create_df(leukemia_dir, healthy_dir, shuffle=False)
+    labels = get_values(dataset_df, "leukemia")
 
     """
     # Feature Extraction
     model = ResNet50(weights='imagenet', include_top=False, pooling="avg")  # Choose your model
     extractor = FeaturesExtractorFactory.get_extractor(model)
-    features_df = create_features_df(df, extractor=extractor, do_scale=True)
+    features_df = create_features_df(dataset_df, extractor=extractor, do_scale=True)
     #print(features_df)
     
     #Save features to file
@@ -74,9 +78,8 @@ if __name__ == '__main__':
     show_performance_cv(model, scores)
     """
 
-    """
     # Neural network classification
-    x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
+    """x_train, x_test, y_train, y_test = train_test_split(features_df, labels, test_size=0.2)
     model = train_deep_neural_network(x_train, y_train, plot=True)
     model.save("../DNN.h5")
 
@@ -86,8 +89,7 @@ if __name__ == '__main__':
 
     predictions_test = model.predict(x_test)
     predictions_test = [1 if x >= 0.5 / prediction_sensitivity else 0 for x in predictions_test]
-    show_performance(model, y_test, predictions_test)
-    """
+    show_performance(model, y_test, predictions_test)"""
 
     image = get_image(df, 2500)
     _show(image, title="Original")
