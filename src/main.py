@@ -1,7 +1,8 @@
+import numpy as np
 import pandas as pd
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
-
+from sklearn.decomposition import PCA
 from classifiers.naive_bayes_classifier import naive_bayes
 from classifiers.performance import show_performance_cv, show_performance
 from classifiers.multilayer_perceptron import train_deep_neural_network
@@ -35,6 +36,20 @@ if __name__ == '__main__':
     # ----- DEMO -------
     features_df = pd.read_csv("ResNet50_unshuffled_features.zip")  # todo - da scalare
     # print(features_df)
+
+
+
+    """
+    # PCA Feature Selection
+    pca_model = PCA(n_components=500)
+    selector = FeaturesSelectorFactory.get_features_selector(pca_model)
+
+    selected_features = selector.select_features(features_df, labels)
+    selected_features = pd.DataFrame(selected_features)
+    """
+
+
+
 
     """
     # FS
