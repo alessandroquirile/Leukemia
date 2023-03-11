@@ -23,14 +23,14 @@ def _create_dataframe(dir_path):
     return pd.DataFrame(dictionary)
 
 
-def create_features_df(df, extractor, do_scale):
+def create_features_df(images_df, extractor, do_scale):
     features_list = []
-    for row in range(len(df)):
+    for row in range(len(images_df)):
     #for row in range(10):  # dbg
-        cropped_image = crop_image(df, row)
+        cropped_image = crop_image(images_df, row)
         features = extractor.extract(cropped_image)
         features_list.append(features)
-        print(f"\rCurrent image: {row}/{len(df)}", end='')
+        print(f"\rCurrent image: {row}/{len(images_df)}", end='')
     print("")
     features_df = pd.DataFrame(features_list)
     if do_scale:

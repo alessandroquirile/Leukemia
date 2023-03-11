@@ -3,36 +3,36 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def get_image(df, row):
-    file_name = get_file_name(df, row)
+def get_image(images_df, row):
+    file_name = get_file_name(images_df, row)
     image = cv.imread(file_name)
     return image
 
 
-def get_file_name(df, row):
-    file_name = df["file_name"][row]
+def get_file_name(images_df, row):
+    file_name = images_df["file_name"][row]
     return file_name
 
 
-def show_image(df, row):
-    file_name = get_file_name(df, row)
-    image = get_image(df, row)
-    _show(image, title=file_name)
+def show_image(images_df, row):
+    file_name = get_file_name(images_df, row)
+    image = get_image(images_df, row)
+    show_image_(image, title=file_name)
 
 
-def _show(image, title=None, cmap=None):
+def show_image_(image, title=None, cmap=None):
     plt.imshow(image, cmap)
     plt.title(title)
     plt.show()
 
 
-def crop_image(df, row):
-    image = get_image(df, row)
-    cropped_image = _crop(image)
+def crop_image(images_df, row):
+    image = get_image(images_df, row)
+    cropped_image = crop_image_(image)
     return cropped_image
 
 
-def _crop(image):
+def crop_image_(image):
     mask = _create_mask(image)
     masked_image = cv.bitwise_and(image, image, mask=mask)
     max_x, max_y, min_x, min_y = _get_cell_coordinates(masked_image)

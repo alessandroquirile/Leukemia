@@ -11,7 +11,7 @@ from classifiers.naive_bayes_classifier import naive_bayes
 from classifiers.performance import show_performance_cv, show_performance
 from classifiers.multilayer_perceptron import train_deep_neural_network
 from dataframe import create_df, get_values, create_full_df, create_features_df
-from images import get_image, _show, add_gaussian_noise, crop_image, _crop, _create_mask
+from images import get_image, show_image_, add_gaussian_noise, crop_image, crop_image_, _create_mask
 from src.factories.features_selector_factory import FeaturesSelectorFactory
 from src.factories.features_extractor_factory import FeaturesExtractorFactory
 from implementations.sift_extractor import SIFTFeaturesExtractor
