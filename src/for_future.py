@@ -38,4 +38,13 @@
 
     predictions_test = model.predict(x_test)
     predictions_test = [1 if x >= 0.5 / prediction_sensitivity else 0 for x in predictions_test]
-    show_performance(model, y_test, predictions_test)"""
+    show_performance(model, y_test, predictions_test)
+
+    image = get_image(dataset_df, 2500)
+    _show(image, title="Original")
+
+    noisy_image = add_gaussian_noise(image)
+    _show(noisy_image, title="Noisy image")
+
+    cropped_image = _crop(noisy_image)
+    _show(cropped_image, title="Cropped noisy image")"""
