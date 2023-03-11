@@ -46,3 +46,8 @@ def scale(features_df):
     scaler.fit(features_df)
     scaled_features = scaler.transform(features_df)
     return pd.DataFrame(scaled_features)
+
+
+def create_full_df(features_df, labels):
+    labels_df = pd.DataFrame({'leukemia': labels})
+    return pd.concat([features_df, labels_df], axis=1)

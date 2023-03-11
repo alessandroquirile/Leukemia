@@ -10,11 +10,12 @@ from sklearn.decomposition import PCA
 from classifiers.naive_bayes_classifier import naive_bayes
 from classifiers.performance import show_performance_cv, show_performance
 from classifiers.multilayer_perceptron import train_deep_neural_network
-from dataframe import create_df, get_values
+from dataframe import create_df, get_values, create_full_df
 from images import get_image, _show, add_gaussian_noise, crop_image, _crop, _create_mask
 from src.factories.features_selector_factory import FeaturesSelectorFactory
 from src.factories.features_extractor_factory import FeaturesExtractorFactory
 from implementations.sift_extractor import SIFTFeaturesExtractor
+
 
 if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
@@ -23,13 +24,16 @@ if __name__ == '__main__':
     images_df = create_df(leukemia_dir, healthy_dir, shuffle=False)  # todo - do shuffle
     labels = get_values(images_df, "leukemia")
 
-    """# Feature Extraction
-    model = ResNet50(weights='imagenet', include_top=False, pooling="avg")  # Choose your model
+    # Feature Extraction
+    """model = ResNet50(weights='imagenet', include_top=False, pooling="avg")  # Choose your model
     extractor = FeaturesExtractorFactory.get_extractor(model)
     features_df = create_features_df(images_df, extractor=extractor, do_scale=True)
-    #print(features_df)
+    #print(features_df)"""
+
+    """# Todo - una volta estratte le feature, posso creare un data frame con le feature | labels per la PCA
+    full_df = create_full_df(features_df, labels)"""
     
-    #Save features to file
+    """"#Save features to file
     compression_opts = dict(method='zip', archive_name='ResNet50_shuffled_features.csv')
     features_df.to_csv('ResNet50_shuffled_features.zip', index=False, compression=compression_opts)
     """
