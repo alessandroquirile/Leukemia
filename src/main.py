@@ -20,14 +20,13 @@ if __name__ == '__main__':
     leukemia_dir = "../dataset/leukemia"  # 8491 images
     healthy_dir = "../dataset/healthy"  # 3389 images
 
-    dataset_df = create_df(leukemia_dir, healthy_dir, shuffle=False)
-    labels = get_values(dataset_df, "leukemia")
+    images_df = create_df(leukemia_dir, healthy_dir, shuffle=False)  # todo - do shuffle
+    labels = get_values(images_df, "leukemia")
 
-    """
-    # Feature Extraction
+    """# Feature Extraction
     model = ResNet50(weights='imagenet', include_top=False, pooling="avg")  # Choose your model
     extractor = FeaturesExtractorFactory.get_extractor(model)
-    features_df = create_features_df(dataset_df, extractor=extractor, do_scale=True)
+    features_df = create_features_df(images_df, extractor=extractor, do_scale=True)
     #print(features_df)
     
     #Save features to file
@@ -44,8 +43,8 @@ if __name__ == '__main__':
     #    max_features=2
     #)
     selector = FeaturesSelectorFactory.get_features_selector(fs_model)
-    features_df = selector.select_features(features_df, labels)"""
+    features_df = selector.select_features(features_df, labels)
 
     # ----- DEMO -------
     features_df = pd.read_csv("ResNet101_shuffled_features.zip", index_col=0)
-    # print(features_df)
+    # print(features_df)"""
