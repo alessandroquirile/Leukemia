@@ -1,8 +1,8 @@
 from sklearn.decomposition import PCA
-from src.interfaces.features_selector import FeaturesSelector
+from src.interfaces.simple_selector import FeaturesSelector
 
 
-class PCASelector(FeaturesSelector):
+class PCAReductor(FeaturesSelector):
 
     def __init__(self, model):
         self._model = model

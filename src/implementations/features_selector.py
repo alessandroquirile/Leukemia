@@ -1,7 +1,7 @@
-from interfaces.features_selector import FeaturesSelector
+from interfaces.simple_selector import FeaturesSelector
 
 
-class Selector(FeaturesSelector):
+class SimpleSelector(FeaturesSelector):
 
     def __init__(self, model):
         self._model = model

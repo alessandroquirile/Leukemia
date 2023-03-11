@@ -30,7 +30,8 @@ def create_features_df(df, extractor, do_scale):
         cropped_image = crop_image(df, row)
         features = extractor.extract(cropped_image)
         features_list.append(features)
-        print(f"\rCurrent: {row}/{len(df)}", end='')
+        print(f"\rCurrent image: {row}/{len(df)}", end='')
+    print("")
     features_df = pd.DataFrame(features_list)
     if do_scale:
         features_df = scale(features_df)
