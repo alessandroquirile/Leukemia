@@ -12,4 +12,3 @@ def knn(x, y, cv=5):
         scoring=("accuracy", "precision", "recall", "f1")
     )
     return model, scores
-
