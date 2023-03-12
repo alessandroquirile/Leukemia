@@ -1,6 +1,7 @@
+import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.decomposition import PCA
-import pandas as pd
+
 
 def plot3d(features_and_labels_df):
     features = features_and_labels_df.drop('leukemia', axis=1).values

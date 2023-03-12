@@ -1,6 +1,6 @@
+import numpy as np
 from matplotlib import pyplot as plt
 
-import numpy as np
 
 def plot_accuracies(neighborhood_span, train_accuracies, test_accuracies, show_best_model=True):
     plt.plot(neighborhood_span, train_accuracies)

@@ -1,10 +1,9 @@
-import numpy as np
 import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
 
 
-def show_performance_cv(model, scores):
+def show_cv_performance(model, scores):
     accuracies = scores["test_accuracy"]
     accuracy_avg = accuracies.mean()
     accuracy_std = accuracies.std()
@@ -50,4 +49,3 @@ def show_performance(model, y_test, predictions_test):
     plt.xlabel("Predicted labels")
     plt.ylabel("Ground truth")
     plt.show()
-

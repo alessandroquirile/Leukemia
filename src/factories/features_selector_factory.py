@@ -1,6 +1,6 @@
+from sklearn.decomposition import PCA
 from sklearn.feature_selection import RFE
 from sklearn.feature_selection import SelectKBest, SelectFromModel
-from sklearn.decomposition import PCA
 
 from interfaces.simple_selector import FeaturesSelector
 from src.implementations.features_selector import SimpleSelector

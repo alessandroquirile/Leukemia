@@ -1,4 +1,3 @@
-from sklearn.decomposition import PCA
 from src.interfaces.simple_selector import FeaturesSelector
 
 

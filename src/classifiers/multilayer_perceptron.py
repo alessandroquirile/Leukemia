@@ -1,8 +1,7 @@
-import tensorflow as tf
-from tensorflow import keras
 from keras import layers
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
+from tensorflow import keras
 
 
 def train_deep_neural_network(x_train, y_train, plot=False):

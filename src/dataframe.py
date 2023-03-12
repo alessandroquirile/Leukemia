@@ -1,5 +1,6 @@
 import os
 
+import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
@@ -26,7 +27,7 @@ def _create_dataframe(dir_path):
 def create_features_df(images_df, extractor, do_scale):
     features_list = []
     for row in range(len(images_df)):
-    #for row in range(10):  # dbg
+        # for row in range(10):  # dbg
         cropped_image = crop_image(images_df, row)
         features = extractor.extract(cropped_image)
         features_list.append(features)
@@ -39,7 +40,7 @@ def create_features_df(images_df, extractor, do_scale):
 
 
 def get_values(df, column):
-    return df[column].to_numpy()
+    return df[column]
 
 
 def scale(features_df):
@@ -49,6 +50,13 @@ def scale(features_df):
     return pd.DataFrame(scaled_features)
 
 
-def create_full_df(features_df, labels):
+def create_full_df(features_df: pd.DataFrame, labels: np.ndarray):
     labels_df = pd.DataFrame({'leukemia': labels})
     return pd.concat([features_df, labels_df], axis=1)
+
+
+def read_from_file(file1, file2):
+    features_df = pd.read_csv(file1, index_col=0)
+    labels = pd.read_csv(file2, index_col=0)
+    labels = labels.values.ravel()
+    return features_df, labels
