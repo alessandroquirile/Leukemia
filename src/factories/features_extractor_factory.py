@@ -8,6 +8,5 @@ class FeaturesExtractorFactory:
     def get_extractor(model) -> FeaturesExtractor:
         if model.name == "resnet50" or model.name == "resnet101":
             return NeuralNetworkFeaturesExtractor(model, 2048)
-        if model.name == "vgg19":
+        elif model.name == "vgg19":
             return NeuralNetworkFeaturesExtractor(model, 512)
-        # no handler for SIFT since it's not a model
