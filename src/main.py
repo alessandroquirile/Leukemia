@@ -31,3 +31,7 @@ if __name__ == '__main__':
     # Classification
     model, scores = naive_bayes(features_df, labels, cv=5)
     show_cv_performance(model, scores)
+
+    # Todo: sklearn.exceptions.NotFittedError: This GaussianNB instance is not fitted yet.
+    #       Call 'fit' with appropriate arguments before using this estimator.
+    model.predict(features_df)
