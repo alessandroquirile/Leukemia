@@ -4,6 +4,19 @@ from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_sc
 
 
 def show_cv_performance(model, scores):
+    accuracy_avg, accuracy_std, precision_avg, precision_std, recall_avg, recall_std, f1_avg, f1_std = \
+        get_performance_from_scores(scores)
+
+    print(
+        f"Model: {model}\n"
+        f"Accuracy: {accuracy_avg} ± {accuracy_std}\n"
+        f"Precision: {precision_avg} ± {precision_std}\n"
+        f"Recall: {recall_avg} ± {recall_std}\n"
+        f"F1: {f1_avg} ± {f1_std}"
+    )
+
+
+def get_performance_from_scores(scores):
     accuracies = scores["test_accuracy"]
     accuracy_avg = accuracies.mean()
     accuracy_std = accuracies.std()
@@ -16,13 +29,8 @@ def show_cv_performance(model, scores):
     f1s = scores["test_f1"]
     f1_avg = f1s.mean()
     f1_std = f1s.std()
-    print(
-        f"Model: {model}\n"
-        f"Accuracy: {accuracy_avg} ± {accuracy_std}\n"
-        f"Precision: {precision_avg} ± {precision_std}\n"
-        f"Recall: {recall_avg} ± {recall_std}\n"
-        f"F1: {f1_avg} ± {f1_std}"
-    )
+
+    return accuracy_avg, accuracy_std, precision_avg, precision_std, recall_avg, recall_std, f1_avg, f1_std
 
 
 def show_performance(model, y_test, predictions_test):
