@@ -1,7 +1,7 @@
 import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
-
+import pandas as pd
 
 def show_cv_performance(model, scores):
     accuracy_avg, accuracy_std, precision_avg, precision_std, recall_avg, recall_std, f1_avg, f1_std = \
@@ -17,18 +17,14 @@ def show_cv_performance(model, scores):
 
 
 def get_performance_from_scores(scores):
-    accuracies = scores["test_accuracy"]
-    accuracy_avg = accuracies.mean()
-    accuracy_std = accuracies.std()
-    precisions = scores["test_precision"]
-    precision_avg = precisions.mean()
-    precision_std = precisions.std()
-    recalls = scores["test_recall"]
-    recall_avg = recalls.mean()
-    recall_std = recalls.std()
-    f1s = scores["test_f1"]
-    f1_avg = f1s.mean()
-    f1_std = f1s.std()
+    accuracy_avg = scores['mean_test_accuracy'].iloc[0]
+    accuracy_std = scores['std_test_accuracy'].iloc[0]
+    precision_avg = scores['mean_test_precision'].iloc[0]
+    precision_std = scores['std_test_precision'].iloc[0]
+    recall_avg = scores['mean_test_recall'].iloc[0]
+    recall_std = scores['std_test_recall'].iloc[0]
+    f1_avg = scores['mean_test_f1'].iloc[0]
+    f1_std = scores['std_test_f1'].iloc[0]
 
     return accuracy_avg, accuracy_std, precision_avg, precision_std, recall_avg, recall_std, f1_avg, f1_std
 
