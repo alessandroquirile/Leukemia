@@ -3,8 +3,8 @@ from sklearn.feature_selection import RFE
 from sklearn.feature_selection import SelectKBest, SelectFromModel
 
 from interfaces.simple_selector import FeaturesSelector
-from src.implementations.features_selector import SimpleSelector
-from src.implementations.pca_reductor import PCAReductor
+from implementations.features_selector import SimpleSelector
+from implementations.pca_reductor import PCAReductor
 
 
 class FeaturesSelectorFactory:

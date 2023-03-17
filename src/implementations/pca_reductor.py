@@ -1,4 +1,4 @@
-from src.interfaces.simple_selector import FeaturesSelector
+from interfaces.simple_selector import FeaturesSelector
 
 
 class PCAReductor(FeaturesSelector):
