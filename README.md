@@ -1,5 +1,3 @@
 # Leukemia
 
-For installing fast all the dependencies just type:
-
-```pip3 install -r requirements.txt```
+Caricamento di immagini oncologiche e pre-processing (blurring, thresholding, cropping). Feature extraction tramite pre-trained CNN (VGG19) e pre-trained Residual CNN (ResNet50, ResNet110), sfruttando il transfer learning. Feature localization con SIFT. Feature normalization (min-max scaling). Feature selection (ANalysis Of VAriance, Recursive Feature Elimination, Random Forest Selection, Principal Component Analysis). Confronto tra classificatori (k-Neighbors, Support Vector Machines, Naive Bayes'). Model selection tramite GridSearch e Stratified k-fold Cross Validation (media empirica e deviazione standard di accuracy, precision, recall, f1). I classificatori dovrebbero distinguere immagini di cellule sane da immagini di cellule malate.
