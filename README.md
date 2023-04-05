@@ -1,3 +1,10 @@
 # Leukemia
 
-Caricamento di immagini oncologiche e pre-processing (blurring, thresholding, cropping). Feature extraction tramite pre-trained CNN (VGG19) e pre-trained Residual CNN (ResNet50, ResNet110), sfruttando il transfer learning. Feature localization con SIFT. Feature normalization (min-max scaling). Feature selection (ANalysis Of VAriance, Recursive Feature Elimination, Random Forest Selection, Principal Component Analysis). Confronto tra classificatori (k-Neighbors, Support Vector Machines, Naive Bayes'). Model selection tramite GridSearch e Stratified k-fold Cross Validation (media empirica e deviazione standard di accuracy, precision, recall, f1). I classificatori dovrebbero distinguere immagini di cellule sane da immagini di cellule malate.
+Oncological images loading and pre-processing (blurring, thresholding, cropping).
+Feature extraction using pre-trained CNNs (VGG19) and pre-trained Residual CNN (ResNet50, ResNet101).
+Feature localization using Scale Invariant Features Transformation (SIFT).
+Feature normalization using min-max scaling.
+Feature selection using ANalysis Of VAriance (ANOVA), Recursive Feature Elimination (RFE), Random Forest Feature Selection, Principal Component Analysis (PCA).
+Comparing binary classifiers: k-Neighbors, (Gaussian) Naive Bayes and Support Vector Machine (SVM).
+Model selection: Hypothesis Test, Grid Search and Stratified k-fold Cross Validation
+Classifiers should distinguish between healthy blood cells and sick blood cells (acute lymphoblastic leukemia)
